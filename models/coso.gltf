@@ -1,0 +1,339 @@
+{
+  "asset": {
+    "version": "2.0",
+    "generator": "Microsoft GLTF Exporter 2.4.2.12"
+  },
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5123,
+      "count": 960,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5123,
+      "count": 36,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 332,
+      "type": "VEC3",
+      "max": [
+        47.243194580078125,
+        52.7220344543457,
+        47.243194580078125
+      ],
+      "min": [
+        -47.243194580078125,
+        -52.7220344543457,
+        -47.24319076538086
+      ]
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3",
+      "max": [
+        92.23579406738281,
+        86.8630599975586,
+        86.8630599975586
+      ],
+      "min": [
+        -92.23579406738281,
+        -86.8630599975586,
+        -86.8630599975586
+      ]
+    },
+    {
+      "bufferView": 4,
+      "componentType": 5126,
+      "count": 332,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 5,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 6,
+      "componentType": 5126,
+      "count": 332,
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 7,
+      "componentType": 5126,
+      "count": 332,
+      "type": "VEC4"
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteOffset": 0,
+      "byteLength": 1920,
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 1920,
+      "byteLength": 72,
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 1992,
+      "byteLength": 3984,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 5976,
+      "byteLength": 288,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 6264,
+      "byteLength": 3984,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 10248,
+      "byteLength": 288,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 10536,
+      "byteLength": 2656,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 13192,
+      "byteLength": 5312,
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "uri": "coso_data.bin",
+      "byteLength": 18504
+    }
+  ],
+  "images": [
+    {
+      "uri": "coso_img0.png"
+    },
+    {
+      "uri": "coso_img1.png"
+    },
+    {
+      "uri": "coso_img2.png"
+    },
+    {
+      "uri": "coso_img3.png"
+    },
+    {
+      "uri": "coso_img4.png"
+    },
+    {
+      "uri": "coso_img5.png"
+    },
+    {
+      "uri": "coso_img6.png"
+    },
+    {
+      "uri": "coso_img7.png"
+    }
+  ],
+  "materials": [
+    {
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 2
+        },
+        "metallicRoughnessTexture": {
+          "index": 3
+        }
+      },
+      "name": "56",
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_pbrSpecularGlossiness": {
+          "diffuseTexture": {
+            "index": 0
+          },
+          "specularGlossinessTexture": {
+            "index": 1
+          }
+        }
+      },
+      "extras": {
+        "MSFT_sRGBFactors": false
+      }
+    },
+    {
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 6
+        },
+        "metallicRoughnessTexture": {
+          "index": 7
+        }
+      },
+      "name": "58",
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_pbrSpecularGlossiness": {
+          "diffuseTexture": {
+            "index": 4
+          },
+          "specularGlossinessTexture": {
+            "index": 5
+          }
+        }
+      },
+      "extras": {
+        "MSFT_sRGBFactors": false
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "mesh_id29",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 2,
+            "NORMAL": 4,
+            "TEXCOORD_0": 6,
+            "COLOR_0": 7
+          },
+          "indices": 0,
+          "material": 0
+        }
+      ]
+    },
+    {
+      "name": "mesh_id27",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 3,
+            "NORMAL": 5
+          },
+          "indices": 1,
+          "material": 1
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "translation": [
+        0.0028462603222578764,
+        -0.08401469886302948,
+        0.2000136822462082
+      ],
+      "rotation": [
+        0,
+        0,
+        0.7071068286895752,
+        -0.7071067094802856
+      ],
+      "scale": [
+        0.0009999999310821295,
+        0.0009999999310821295,
+        0.0010000000474974513
+      ],
+      "mesh": 0
+    },
+    {
+      "translation": [
+        0.004163627978414297,
+        0.004627975635230541,
+        0.200013667345047
+      ],
+      "scale": [
+        0.0010000000474974513,
+        0.0010000000474974513,
+        0.0010000000474974513
+      ],
+      "mesh": 1
+    },
+    {
+      "children": [
+        0,
+        1
+      ],
+      "name": "root"
+    }
+  ],
+  "samplers": [
+    {
+      "minFilter": 9985
+    }
+  ],
+  "scenes": [
+    {
+      "nodes": [
+        2
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "name": "texture478",
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "name": "texture482",
+      "sampler": 0,
+      "source": 1
+    },
+    {
+      "name": "56_bc",
+      "sampler": 0,
+      "source": 2
+    },
+    {
+      "name": "56_mr",
+      "sampler": 0,
+      "source": 3
+    },
+    {
+      "name": "texture483",
+      "sampler": 0,
+      "source": 4
+    },
+    {
+      "name": "texture481",
+      "sampler": 0,
+      "source": 5
+    },
+    {
+      "name": "58_bc",
+      "sampler": 0,
+      "source": 6
+    },
+    {
+      "name": "58_mr",
+      "sampler": 0,
+      "source": 7
+    }
+  ],
+  "scene": 0,
+  "extensionsUsed": [
+    "KHR_materials_pbrSpecularGlossiness"
+  ]
+}

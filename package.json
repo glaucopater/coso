@@ -1,0 +1,41 @@
+{
+  "name": "coso",
+  "version": "1.0.0",
+  "description": "a 3d game",
+  "author": "Glauco Pater",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/glaucopater/coso.git"
+  },
+  "keywords": [
+    "3d",
+    "js",
+    "gl",
+    "game"
+  ],
+  "main": "src/index.js",
+  "dependencies": {
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-hotkeys-hook": "3.0.3",
+    "react-scripts": "4.0.1",
+    "react-three-fiber": "5.3.10",
+    "three": "0.123.0"
+  },
+  "homepage": "https://github.com/glaucopater/coso#readme",
+  "devDependencies": {
+    "gltf-import-export": "^1.0.18"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

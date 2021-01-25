@@ -1,0 +1,28 @@
+{
+  "name": "coso",
+  "version": "1.0.0",
+  "description": "a 3d game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/glaucopater/coso.git"
+  },
+  "keywords": [
+    "3d",
+    "js",
+    "gl",
+    "game"
+  ],
+  "author": "Glauco Pater",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/glaucopater/coso/issues"
+  },
+  "homepage": "https://github.com/glaucopater/coso#readme",
+  "devDependencies": {
+    "gltf-import-export": "^1.0.18"
+  }
+}
