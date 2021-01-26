@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "a 3d game",
   "author": "Glauco Pater",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/glaucopater/coso.git"
-  },
   "keywords": [
     "3d",
     "js",
@@ -22,7 +18,6 @@
     "react-three-fiber": "5.3.10",
     "three": "0.123.0"
   },
-  "homepage": "https://github.com/glaucopater/coso#readme",
   "devDependencies": {
     "gltf-import-export": "^1.0.18"
   },
