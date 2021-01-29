@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Canvas } from 'react-three-fiber'
 import { useHotkeys } from 'react-hotkeys-hook'
-import { Controls } from "./Controls";
-import { Plane } from "./Plane";
-import { Box } from "./Box";
+import { Controls } from "../components/Controls";
+import { Plane } from "../components/Plane";
+import { Box } from "../components/Box";
 
 export const ControlsAndPlane = () => {
     const [position, setPosition] = useState([0, 0, 0])
@@ -15,12 +15,14 @@ export const ControlsAndPlane = () => {
 
     return (
         <>
-            <Controls />
-            <ambientLight intensity={0.9} />
-            <spotLight position={[1, 1, 1]} angle={0.15} penumbra={1} />
-            <pointLight position={[-1, -1, -1]} />
-            <Box position={position} />
-            <Plane />
+            <Canvas >
+                <Controls />
+                <ambientLight intensity={0.9} />
+                <spotLight position={[1, 1, 1]} angle={0.15} penumbra={1} />
+                <pointLight position={[-1, -1, -1]} />
+                <Box position={position} />
+                <Plane />
+            </Canvas >
         </>
     )
 }

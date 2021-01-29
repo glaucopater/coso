@@ -1,14 +1,10 @@
 import React from 'react'
-import { Canvas } from 'react-three-fiber'
-import { ControlsAndPlane } from "./components/ControlsAndPlane"
+// import { ControlsAndPlane } from "./containers/ControlsAndPlane"
+import EarthWithBoxes from "./containers/EarthWithBoxes"
 
 
 export default function App() {
   return (
-    <>
-      <Canvas >
-        <ControlsAndPlane />
-      </Canvas>
-    </>
+    <EarthWithBoxes />
   )
 }
