@@ -1,12 +1,12 @@
 {
   "name": "covid19-vaccinations-3d",
   "version": "1.0.0",
-  "description": "a three dimensional map of worldwide Covi-19 vaccinations",
+  "description": "a three dimensional map of worldwide Covid-19 vaccinations",
   "author": "Glauco Pater",
   "keywords": [
     "3d",
     "js",
-    "gl",
+    "gl"
   ],
   "main": "src/index.js",
   "dependencies": {
