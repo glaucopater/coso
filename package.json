@@ -1,13 +1,12 @@
 {
   "name": "coso",
   "version": "1.0.0",
-  "description": "a 3d game",
+  "description": "a three dimensional map of worldwide Covi-19 vaccinations",
   "author": "Glauco Pater",
   "keywords": [
     "3d",
     "js",
     "gl",
-    "game"
   ],
   "main": "src/index.js",
   "dependencies": {
