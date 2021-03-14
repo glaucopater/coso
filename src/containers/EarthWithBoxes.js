@@ -1,4 +1,4 @@
-import React, { Suspense, useRef, useState, useEffect } from 'react'
+import React, { Suspense, useRef, useEffect } from 'react'
 import { Canvas, useFrame, useLoader } from 'react-three-fiber'
 import { Controls } from '../components/Controls'
 import * as THREE from 'three'
@@ -9,7 +9,7 @@ const makeUrl = (file) => `https://raw.githubusercontent.com/flowers1225/threejs
 
 const LOOK_AT_COORDS = [0, 0, 0]
 
-const MyCube = (props) => {
+const Vaccination3dBar = (props) => {
   const mesh = useRef()
   const { position, onClick, vaccinations, population } = props;
   useEffect(() => {
@@ -28,49 +28,6 @@ const MyCube = (props) => {
 }
 
 
-export const Box = (props) => {
-  // This reference will give us direct access to the mesh
-  const mesh = useRef()
-
-
-  // Set up state for the hovered and active state
-  const [hovered, setHover] = useState(false)
-  const [active, setActive] = useState(false)
-  // Rotate mesh every frame, this is outside of React without overhead
-  // useFrame(() => {
-  //   if (active) {
-  //     mesh.current.rotation.x = mesh.current.rotation.y += 0.01
-  //   }
-  // })
-
-  const { position, setCounter } = props
-  const boxDimensions = [1, 1, 10]
-  const boxScale = [1, 1, 1]
-
-  const handleOnClick = () => {
-    setActive(!active)
-    //setCounter((prevCounter) => prevCounter + 1)
-    setHover(true)
-  }
-
-  return (
-    <mesh
-      {...props}
-      ref={mesh}
-      scale={boxScale}
-      position={position}
-      onClick={handleOnClick}
-      onPointerOver={handleOnClick}
-      lookAt={new THREE.Vector3(0, 0, 0)}
-      onPointerOut={() => setHover(false)}
-      onClick={onClick}>
-      <boxBufferGeometry args={boxDimensions} />
-      <meshStandardMaterial color={hovered ? 'red' : 'grey'} />
-    </mesh >
-  )
-}
-
-
 const Earth = () => {
 
   const [liveData, setLiveData] = React.useState([]);
@@ -83,11 +40,7 @@ const Earth = () => {
 
   const [texture, bump] = useLoader(THREE.TextureLoader, [makeUrl('earth4'), makeUrl('earth_bump')])
   const ref = useRef()
-  const radium = RADIUS_SPHERE
-
-  useFrame(() => {
-    // ref.current.rotation.y += 0.001
-  })
+  const radium = RADIUS_SPHERE;
 
   const points = data.map(([name, lat, long]) => {
     const country = liveData.length > 0 && liveData.filter(item => item.location === name) || null
@@ -110,7 +63,7 @@ const Earth = () => {
     <group ref={ref} name="earth">
       {points.map(({ name, point, population, vaccinations }) => {
         if (population > 0)
-          return <MyCube
+          return <Vaccination3dBar
             key={name}
             position={point}
             population={population}
@@ -120,27 +73,9 @@ const Earth = () => {
                 e.point.x, e.point.y, e.point.z, convertLatLon([e.point.x, e.point.y, e.point.z]))
             }}
           />
-
-        // return <mesh
-        //   key={name}
-        //   scale={[3.1, 0.1, 0.1]}
-        //   position={point}
-        //   lookAt={(new THREE.Vector3(0, 0, 0))}
-
-        //   //rotation={[45, 0, 0]}
-        //   onClick={(e) => {
-        //     console.log(name, population.toLocaleString(), vaccinations.toLocaleString(),
-        //       e.point.x, e.point.y, e.point.z, convertLatLon([e.point.x, e.point.y, e.point.z]))
-        //   }}>
-        //   <boxBufferGeometry args={[1, 1, 1]} />
-        //   <meshStandardMaterial color={'#ff0000'} />
-        // </mesh>
       })
       }
-      <mesh
-        visible
-        position={[0, 0, 0]}
-      >
+      <mesh visible position={[0, 0, 0]}>
         <sphereBufferGeometry attach="geometry" args={[radium, 64, 64]} />
         <meshStandardMaterial attach="material" map={texture} bumpMap={bump} bumpScale={0.05} />
       </mesh>
@@ -161,15 +96,6 @@ export default function EarthWithBoxes() {
         <Suspense fallback={null}>
           <Earth />
         </Suspense>
-        {/* <Box position={[5, 0, 0]} lookAt={(new THREE.Vector3(0, 0, 0))} />
-        <Box position={[10, 0, 0]} />
-        <Box position={[15, 0, 0]} /> */}
-        {/* <MyCube position={[2 * 4, 0, 0]} />
-        <MyCube position={[4 * 4, 0, 0]} />
-        <MyCube position={[0, 2 * 4, 0]} />
-        <MyCube position={[0, 4 * 4, 0]} />
-        <MyCube position={[0, 0, 2 * 4]} />
-        <MyCube position={[0, 4, 4 * 4]} /> */}
       </Canvas>
     </>
   )
