@@ -1,7 +1,7 @@
 {
-  "name": "covid19-vaccinations-3d",
+  "name": "coso",
   "version": "1.0.0",
-  "description": "a three dimensional map of worldwide Covid-19 vaccinations",
+  "description": "a three dimensional map simulator",
   "author": "Glauco Pater",
   "keywords": [
     "3d",

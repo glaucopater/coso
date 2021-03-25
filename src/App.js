@@ -1,10 +1,8 @@
 import React from 'react'
-// import { ControlsAndPlane } from "./containers/ControlsAndPlane"
-import EarthWithBoxes from "./containers/EarthWithBoxes"
-
+import { ControlsAndPlane } from "./containers/ControlsAndPlane"
 
 export default function App() {
   return (
-    <EarthWithBoxes />
+    <ControlsAndPlane />
   )
 }
