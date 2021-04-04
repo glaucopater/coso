@@ -1,8 +1,8 @@
 import React from 'react'
-import { ControlsAndPlane } from "./containers/ControlsAndPlane"
+import { GameArea } from "./containers/GameArea/"
 
 export default function App() {
   return (
-    <ControlsAndPlane />
+    <GameArea />
   )
 }

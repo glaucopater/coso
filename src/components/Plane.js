@@ -1,15 +1,12 @@
 import React, { useRef } from 'react'
 
-export const Plane = (props) => {
+export const Plane = ({ position = [0, -1, 0], dimensions = [10, 1, 10], color = "green", scale = [1, 1, 1] }) => {
     const mesh = useRef()
 
-    const position = [0, -1, 0]
-    const boxDimensions = [10, 1, 10]
-
     return (
-        <mesh {...props} ref={mesh} scale={[1, 1, 1]} position={position}>
-            <boxBufferGeometry args={boxDimensions} />
-            <meshStandardMaterial color={'green'} />
+        <mesh ref={mesh} scale={scale} position={position}>
+            <boxBufferGeometry args={dimensions} />
+            <meshStandardMaterial color={color} />
         </mesh>
     )
 }
