@@ -6,6 +6,7 @@ Definition of environment
 
 Main Player
     - can move through the game area via controller
+        -> yes, but due async event if something is delayed there is a "jump" effect
     - can go in automode with a certain route
 
 Solution
