@@ -1,7 +1,4 @@
 import * as THREE from 'three';
-import { apiUrl } from "../Config";
-
-
 const RAD2DEG = 180 / Math.PI
 const DEG2RAD = Math.PI / 180
 export const RADIUS_SPHERE = 7;
@@ -23,24 +20,7 @@ export function polarToCartesian(lon, lat, radius) {
         y: radius * Math.cos(phi),
         z: radius * Math.sin(phi) * Math.cos(theta),
     }
-
 }
-
-/**
- * Convert [x,y,z] cartesian coordinates to polar [lat,lon]
- * @param {Vector3} coord
- * @return {Array<Number>}
- */
-function cartesianToPolar(coord) {
-
-    var lon = Math.atan2(coord.x, -coord.z) * RAD2DEG
-    var length = Math.sqrt(coord.x * coord.x + coord.z * coord.z)
-    var lat = Math.atan2(coord.y, length) * RAD2DEG
-
-    return [lon, lat]
-
-}
-
 
 
 // convert the positions from a lat, lon to a position on a sphere.
@@ -112,5 +92,22 @@ export const fetchLiveData = () => {
         .catch((error) => {
             console.log(error)
         })
+}
 
+
+export const changePlayerPosition = (action, setPosition) => {
+    switch (action) {
+        case "right":
+            setPosition((prevPos) => [prevPos[0] + 1, prevPos[1], prevPos[2]]);
+            break;
+        case "left":
+            setPosition((prevPos) => [prevPos[0] - 1, prevPos[1], prevPos[2]])
+            break;
+        case "up":
+            setPosition((prevPos) => [prevPos[0], prevPos[1], prevPos[2] - 1])
+            break;
+        case "down":
+            setPosition((prevPos) => [prevPos[0], prevPos[1], prevPos[2] + 1]);
+            break;
+    }
 }

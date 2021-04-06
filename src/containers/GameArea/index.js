@@ -4,41 +4,10 @@ import { useHotkeys } from 'react-hotkeys-hook'
 import { Controls } from "../../components/Controls";
 import { Plane } from "../../components/Plane";
 import { Box } from "../../components/Box";
+import { MAX_PLANE_SIZE, MAX_AREA_SIZE, GAME_SETTINGS } from "../../settings";
+import { changePlayerPosition } from "../../utils";
 
 
-const MAX_AREA_SIZE = 10;
-const MAX_PLANE_SIZE = MAX_AREA_SIZE / 2 - 1
-
-const defaultSettings = {
-    plane: {
-        color: "#ccc",
-        dimensions: [MAX_AREA_SIZE, 1, MAX_AREA_SIZE]
-    },
-    player: {
-        color: "#45f",
-    },
-    tile: {
-        color: "#33ff33",
-        dimensions: [1, 0, 1]
-    }
-}
-
-export const changePosition = (action, setPosition) => {
-    switch (action) {
-        case "right":
-            setPosition((prevPos) => [prevPos[0] + 1, prevPos[1], prevPos[2]]);
-            break;
-        case "left":
-            setPosition((prevPos) => [prevPos[0] - 1, prevPos[1], prevPos[2]])
-            break;
-        case "up":
-            setPosition((prevPos) => [prevPos[0], prevPos[1], prevPos[2] - 1])
-            break;
-        case "down":
-            setPosition((prevPos) => [prevPos[0], prevPos[1], prevPos[2] + 1]);
-            break;
-    }
-}
 
 const obeyLimits = (x, z) => {
     return (x <= MAX_PLANE_SIZE && x >= -MAX_PLANE_SIZE && z >= -MAX_PLANE_SIZE && z <= MAX_PLANE_SIZE);
@@ -47,43 +16,41 @@ const obeyLimits = (x, z) => {
 export const GameArea = () => {
     const [position, setPosition] = useState([0, 0, 0])
     const [positionsLog, setPositionLog] = useState([]);
-    const [x, y, z] = position;
+    const [x, , z] = position;
     const [isCleared, setIsCleared] = useState(false);
     const zippedPositions = positionsLog.map(pos => pos.join(""));
     const uniquePositions = [...new Set(zippedPositions)];
-    // const zippedUniquePositions = uniquePositions.map(pos => pos.split("").map(n => n * 1)) // problem with minus
-    // console.log(positionsLog, zippedPositions, uniquePositions);
-    const cleanedTiles = positionsLog.map((tile, index) => <Box key={index.toString()} {...defaultSettings.tile} position={tile} />)
+    const cleanedTiles = positionsLog.map((tile, index) => <Box key={index.toString()} {...GAME_SETTINGS.tile} position={tile} />)
     const planeArea = (MAX_AREA_SIZE - 1) * (MAX_AREA_SIZE - 1);
-    const player = <Box {...defaultSettings.player} position={position} />
+    const player = <Box {...GAME_SETTINGS.player} position={position} />
 
     //definition of N S E O should be visibible --> compass?
 
     useHotkeys('right', () => {
         if (obeyLimits(x + 1, z)) {
             setPositionLog((prevState) => [...prevState, position]);
-            return changePosition('right', setPosition);
+            return changePlayerPosition('right', setPosition);
         }
     }, [x, z]);
 
     useHotkeys('left', () => {
         if (obeyLimits(x - 1, z)) {
             setPositionLog((prevState) => [...prevState, position]);
-            return changePosition('left', setPosition);
+            return changePlayerPosition('left', setPosition);
         }
     }, [x, z]);
 
     useHotkeys('up', () => {
         if (obeyLimits(x, z - 1)) {
             setPositionLog((prevState) => [...prevState, position]);
-            return changePosition('up', setPosition);
+            return changePlayerPosition('up', setPosition);
         }
     }, [x, z]);
 
     useHotkeys('down', () => {
         if (obeyLimits(x, z + 1)) {
             setPositionLog((prevState) => [...prevState, position]);
-            return changePosition('down', setPosition);
+            return changePlayerPosition('down', setPosition);
         }
     }, [x, z]);
 
@@ -110,7 +77,7 @@ export const GameArea = () => {
                 <pointLight position={[-1, -1, -1]} />
                 {!isCleared && player}
                 {cleanedTiles}
-                <Plane {...defaultSettings.plane} />
+                <Plane {...GAME_SETTINGS.plane} />
             </Canvas >
         </>
     )

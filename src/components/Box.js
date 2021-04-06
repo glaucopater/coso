@@ -1,25 +1,9 @@
-import React, { useRef, useState, useMemo } from 'react'
-import { useFrame, useThree } from 'react-three-fiber'
+import React, { useRef, useState } from 'react'
+import { useFrame } from 'react-three-fiber'
 
-export const Box = ({ color = '#f00', position = [0, 0, 0], dimensions = [1, 1, 1] }) => {
+export const Box = ({ color = '#f00', position = [0, 0, 0], dimensions = [1, 1, 1], clickable = false }) => {
     // This reference will give us direct access to the mesh
     const mesh = useRef()
-    const {
-        gl,                           // WebGL renderer
-        scene,                        // Default scene
-        camera,                       // Default camera
-        raycaster,                    // Default raycaster
-        size,                         // Bounds of the view (which stretches 100% and auto-adjusts)
-        aspect,                       // Aspect ratio (size.width / size.height)
-        mouse,                        // Current, centered, normalized 2D mouse coordinates
-        clock,                        // THREE.Clock (useful for useFrame deltas)
-        invalidate,
-        intersect,
-        setDefaultCamera,
-        viewport,
-        forceResize,
-    } = useThree()
-
 
     // Set up state for the hovered and active state
     const [hovered, setHover] = useState(false)
@@ -37,20 +21,30 @@ export const Box = ({ color = '#f00', position = [0, 0, 0], dimensions = [1, 1, 
         }
     })
 
+    const handleOnClick = () => {
+        setActive(!active);
+    }
+
+
+    const events = {
+        ...(clickable &&
+            { onClick: handleOnClick }
+        ),
+        onPointerOver: () => setHover(true),
+        onPointerOut: () => setHover(false)
+        // onUpdate={(self) => console.log('props have been updated', self)}
+    };
 
     return (
         <mesh
             ref={mesh}
             scale={[1, 1, 1]}
             position={position}
-            onClick={(e) => setActive(!active)}
-            onPointerOver={(e) => setHover(true)}
-            onPointerOut={(e) => setHover(false)}
-        // onUpdate={(self) => console.log('props have been updated', self)}
+            {...events}
         >
             <boxBufferGeometry args={dimensions} />
             <meshStandardMaterial color={activeColor} />
-        </mesh>
+        </mesh >
 
     )
 }
