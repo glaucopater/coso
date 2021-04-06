@@ -4,69 +4,72 @@ import { useHotkeys } from 'react-hotkeys-hook'
 import { Controls } from "../../components/Controls";
 import { Plane } from "../../components/Plane";
 import { Box } from "../../components/Box";
-import { MAX_PLANE_SIZE, MAX_AREA_SIZE, GAME_SETTINGS } from "../../settings";
-import { changePlayerPosition } from "../../utils";
+import { MAX_AREA_SIZE, GAME_SETTINGS } from "../../settings";
+import { changePlayerPosition, obeyLimits, timedLoopArray } from "../../utils";
 
-
-
-const obeyLimits = (x, z) => {
-    return (x <= MAX_PLANE_SIZE && x >= -MAX_PLANE_SIZE && z >= -MAX_PLANE_SIZE && z <= MAX_PLANE_SIZE);
-}
 
 export const GameArea = () => {
-    const [position, setPosition] = useState([0, 0, 0])
+    const [playerPosition, setPlayerPosition] = useState([0, 0, 0])
     const [positionsLog, setPositionLog] = useState([]);
-    const [x, , z] = position;
+    const [x, , z] = playerPosition;
     const [isCleared, setIsCleared] = useState(false);
+    const [counter, setCounter] = useState(0);
     const zippedPositions = positionsLog.map(pos => pos.join(""));
     const uniquePositions = [...new Set(zippedPositions)];
     const cleanedTiles = positionsLog.map((tile, index) => <Box key={index.toString()} {...GAME_SETTINGS.tile} position={tile} />)
     const planeArea = (MAX_AREA_SIZE - 1) * (MAX_AREA_SIZE - 1);
-    const player = <Box {...GAME_SETTINGS.player} position={position} />
+    const player = <Box {...GAME_SETTINGS.player} position={playerPosition} />
 
     //definition of N S E O should be visibible --> compass?
 
     useHotkeys('right', () => {
         if (obeyLimits(x + 1, z)) {
-            setPositionLog((prevState) => [...prevState, position]);
-            return changePlayerPosition('right', setPosition);
+            setPositionLog((prevState) => [...prevState, playerPosition]);
+            return changePlayerPosition('right', setPlayerPosition);
         }
     }, [x, z]);
 
     useHotkeys('left', () => {
         if (obeyLimits(x - 1, z)) {
-            setPositionLog((prevState) => [...prevState, position]);
-            return changePlayerPosition('left', setPosition);
+            setPositionLog((prevState) => [...prevState, playerPosition]);
+            return changePlayerPosition('left', setPlayerPosition);
         }
     }, [x, z]);
 
     useHotkeys('up', () => {
         if (obeyLimits(x, z - 1)) {
-            setPositionLog((prevState) => [...prevState, position]);
-            return changePlayerPosition('up', setPosition);
+            setPositionLog((prevState) => [...prevState, playerPosition]);
+            return changePlayerPosition('up', setPlayerPosition);
         }
     }, [x, z]);
 
     useHotkeys('down', () => {
         if (obeyLimits(x, z + 1)) {
-            setPositionLog((prevState) => [...prevState, position]);
-            return changePlayerPosition('down', setPosition);
+            setPositionLog((prevState) => [...prevState, playerPosition]);
+            return changePlayerPosition('down', setPlayerPosition);
         }
     }, [x, z]);
 
     useHotkeys('space', () => {
-        console.log("space")
-    });
+        timedLoopArray(positionsLog.reverse(), 500, setPlayerPosition);
+    }, [positionsLog]);
 
     useEffect(() => {
         if (uniquePositions.length >= planeArea) {
-            console.log("Stage Cleared");
             setIsCleared(true);
         }
-    }, [uniquePositions, planeArea, setIsCleared]
+    }, [isCleared, uniquePositions, positionsLog]
     )
 
-
+    useEffect(() => {
+        if (isCleared && counter == 0) {
+            timedLoopArray(positionsLog.reverse(), 500, setPlayerPosition).then(() => {
+                setCounter(1);
+                console.log("timedLoopArray over");
+            });
+        }
+    }, [isCleared, counter]
+    )
 
     return (
         <>
@@ -75,7 +78,7 @@ export const GameArea = () => {
                 <ambientLight intensity={0.9} />
                 <spotLight position={[1, 1, 1]} angle={0.15} penumbra={1} />
                 <pointLight position={[-1, -1, -1]} />
-                {!isCleared && player}
+                {counter == 0 && player}
                 {cleanedTiles}
                 <Plane {...GAME_SETTINGS.plane} />
             </Canvas >

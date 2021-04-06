@@ -1,5 +1,5 @@
 
-export const MAX_AREA_SIZE = 10;
+export const MAX_AREA_SIZE = 6;
 export const MAX_PLANE_SIZE = MAX_AREA_SIZE / 2 - 1;
 
 export const GAME_SETTINGS = {

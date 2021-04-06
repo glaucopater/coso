@@ -1,6 +1,9 @@
 import * as THREE from 'three';
-const RAD2DEG = 180 / Math.PI
-const DEG2RAD = Math.PI / 180
+import { MAX_PLANE_SIZE } from "../settings";
+
+const RAD2DEG = 180 / Math.PI;
+const DEG2RAD = Math.PI / 180;
+
 export const RADIUS_SPHERE = 7;
 
 /**
@@ -109,5 +112,34 @@ export const changePlayerPosition = (action, setPosition) => {
         case "down":
             setPosition((prevPos) => [prevPos[0], prevPos[1], prevPos[2] + 1]);
             break;
+    }
+}
+
+
+
+export const obeyLimits = (x, z) => {
+    return (x <= MAX_PLANE_SIZE && x >= -MAX_PLANE_SIZE && z >= -MAX_PLANE_SIZE && z <= MAX_PLANE_SIZE);
+}
+
+export const delay = (ms) => {
+    return (x) => {
+        return new Promise(resolve => setTimeout(() => resolve(x), ms));
+    };
+}
+
+function waitForMillisec(milisec) {
+    return new Promise(resolve => {
+        const timer = setTimeout(() => { resolve('') }, milisec);
+    })
+}
+
+export async function timedLoopArray(arr, millisec, callback) {
+    for (let i = 0; i < arr.length; ++i) {
+        await waitForMillisec(millisec).then(() => {
+            console.log("back to " + i);
+        });
+        if (callback) {
+            callback(arr[i]);
+        }
     }
 }
