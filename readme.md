@@ -13,6 +13,6 @@ Solution
 ---
 Record the movement of the player and then play them.
 --> this requires to action:
-    - record
-    - stop
-    - play
+    - record (all the movements are stored)
+    - stop (when the stage is clear)
+    - play reverse (on space or after stage is cleared)
